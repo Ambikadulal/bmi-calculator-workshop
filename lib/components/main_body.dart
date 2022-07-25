@@ -8,7 +8,8 @@ class MainBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const TextStyle style = TextStyle(color: Colors.grey, fontSize: 16, fontWeight: FontWeight.bold);
+    const TextStyle style = TextStyle(
+        color: Colors.grey, fontSize: 16, fontWeight: FontWeight.bold);
     final Decoration decoration = BoxDecoration(
       shape: BoxShape.rectangle,
       color: Colors.blueGrey.shade500,
@@ -16,32 +17,42 @@ class MainBody extends StatelessWidget {
     );
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
-            CommonContainer(
-              icon: Icon(
-                Icons.male_outlined,
-                color: Colors.white,
-                size: 40,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+              Expanded(
+                child: CommonContainer(
+                  icon: Icon(
+                    Icons.male_outlined,
+                    color: Colors.white,
+                    size: 40,
+                  ),
+                  text: "MALE",
+                ),
               ),
-              text: "MALE",
-            ),
-            CommonContainer(
-              icon: Icon(
-                Icons.female_outlined,
-                color: Colors.white,
-                size: 40,
+              SizedBox(
+                width: 20,
               ),
-              text: "FEMALE",
-            ),
-          ],
+              Expanded(
+                child: CommonContainer(
+                  icon: Icon(
+                    Icons.female_outlined,
+                    color: Colors.white,
+                    size: 40,
+                  ),
+                  text: "FEMALE",
+                ),
+              ),
+            ],
+          ),
         ),
         Container(
           height: 100,
           padding: const EdgeInsets.all(20),
-          margin: const EdgeInsets.all(20),
+          margin: const EdgeInsets.all(15),
           // width: 100,
           decoration: decoration,
           child: Column(
@@ -58,7 +69,10 @@ class MainBody extends StatelessWidget {
                 children: const [
                   Text(
                     "180",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30, color: Colors.white),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                        color: Colors.white),
                   ),
                   Text(
                     "cm",
@@ -69,18 +83,28 @@ class MainBody extends StatelessWidget {
             ],
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            CountContainer(
-              text: "WEIGHT",
-              countText: "60",
-            ),
-            CountContainer(
-              text: "AGE",
-              countText: "28",
-            ),
-          ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Expanded(
+                child: CountContainer(
+                  text: "WEIGHT",
+                  countText: "60",
+                ),
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                child: CountContainer(
+                  text: "AGE",
+                  countText: "28",
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );
