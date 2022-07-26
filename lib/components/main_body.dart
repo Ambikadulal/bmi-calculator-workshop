@@ -1,10 +1,14 @@
+import 'package:bmi_calculator/components/height_container.dart';
 import 'package:flutter/material.dart';
 
 import 'common_container.dart';
 import 'count_container.dart';
 
 class MainBody extends StatelessWidget {
-  const MainBody({Key? key}) : super(key: key);
+  final Function(int height) setHeight;
+  final Function(int weight) setWeight;
+  const MainBody({Key? key, required this.setHeight, required this.setWeight})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,49 +53,26 @@ class MainBody extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-          height: 100,
-          padding: const EdgeInsets.all(20),
-          margin: const EdgeInsets.all(15),
-          // width: 100,
-          decoration: decoration,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Text(
-                "HEIGHT",
-                style: style,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    "180",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                        color: Colors.white),
-                  ),
-                  Text(
-                    "cm",
-                    style: TextStyle(fontSize: 12, color: Colors.grey),
-                  ),
-                ],
-              ),
-            ],
+        Padding(
+          padding: const EdgeInsets.all(15),
+          child: HeightContainer(
+            text: 'Height',
+            countText: '0',
+            onChange: (int height) {
+              setHeight(height);
+            },
           ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Expanded(
                 child: CountContainer(
                   text: "WEIGHT",
                   countText: "60",
+                  onChange: setWeight,
                 ),
               ),
               SizedBox(
@@ -99,6 +80,7 @@ class MainBody extends StatelessWidget {
               ),
               Expanded(
                 child: CountContainer(
+                  onChange: (value) {},
                   text: "AGE",
                   countText: "28",
                 ),

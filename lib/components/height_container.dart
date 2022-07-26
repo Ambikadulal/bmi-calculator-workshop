@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
-class CountContainer extends StatefulWidget {
+class HeightContainer extends StatefulWidget {
   final String text;
   final String countText;
-  final Function(int value) onChange;
 
-  const CountContainer({
-    Key? key,
-    required this.text,
-    required this.countText,
-    required this.onChange,
-  }) : super(key: key);
+  final Function(int height) onChange;
+  const HeightContainer(
+      {Key? key,
+      required this.text,
+      required this.countText,
+      required this.onChange})
+      : super(key: key);
 
   @override
-  State<CountContainer> createState() => _CountContainerState();
+  State<HeightContainer> createState() => _HeightContainerState();
 }
 
-class _CountContainerState extends State<CountContainer> {
+class _HeightContainerState extends State<HeightContainer> {
   int value = 0;
 
   @override
@@ -30,7 +30,7 @@ class _CountContainerState extends State<CountContainer> {
         color: Colors.grey, fontSize: 16, fontWeight: FontWeight.bold);
     return Container(
       height: 100,
-      width: 100,
+      // width: 100,
       padding: const EdgeInsets.all(10),
       decoration: decoration,
       child: Column(
@@ -40,9 +40,22 @@ class _CountContainerState extends State<CountContainer> {
             widget.text,
             style: style,
           ),
-          Text(
-            value.toString(),
-            style: const TextStyle(fontSize: 30, color: Colors.white),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                value.toString(),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    color: Colors.white),
+              ),
+              Text(
+                "cm",
+                style: TextStyle(fontSize: 12, color: Colors.grey),
+              ),
+            ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -5,11 +5,29 @@ import 'components/main_body.dart';
 
 // Entry point of the program
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+
+  int height = 0;
+  int weight = 0;
+
+  void setHeight(value) {
+    height = value;
+  }
+
+  void setWeight(value) {
+    weight = value;
+  }
+
+  // BMI = weight / height^2
+  double calculateBMI(int weight, int height) {
+    var heightinft = height * 0.03;
+    double bmi = weight / (heightinft * heightinft);
+    return bmi;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +40,20 @@ class MyApp extends StatelessWidget {
           title: const Text("BMI CALCULATOR"),
           centerTitle: true,
         ),
-        body: const MainBody(),
+        body: MainBody(
+          setHeight: setHeight,
+          setWeight: setWeight,
+        ),
         bottomNavigationBar: Builder(builder: (context) {
           return InkWell(
             onTap: () {
+              var bmi = calculateBMI(weight, height);
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return ResultsPage();
+                    return ResultsPage(
+                      bmiResult: bmi,
+                    );
                   },
                 ),
               );
